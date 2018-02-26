@@ -1,29 +1,25 @@
 import java.util.Random;
 
-abstract class Document {
+class Document {
   
   // メンバ変数
-  protected int DocNum;
-  protected String DocName;
+  protected int docNum;
+  protected String docName;
+  protected String docEmpName;
+  protected String docClientName;
+  protected int docWorkCost;
   
-  Document(int DocNum) { //  コンストラクタ
-    /*
-     *  ドキュメントの番号付与
-     */
-    
+  Document(int DocNum) {
     Random random = new Random();
-    this.DocNum = random.nextInt(999998) + DocNum;
-    
+    this.docNum = random.nextInt(999998) + DocNum;
   }
   
-  public void setDocName(String DocName) {
-    this.DocName = DocName;
+  void docMake() {
+    System.out.println("書類番号:" + docNum);
+    System.out.println("書類名:" + docName);
+    System.out.println("契約者:" + docEmpName);
+    System.out.println("契約会社:" + docClientName);
+    System.out.println("契約金:" + docWorkCost + "万円");
   }
   
-  public String getDocName() {
-    String getName = "書類名：" + DocName;
-    return getName;
-  }
-  
-  abstract void newDocMake();   //  抽象メソッド(サブクラスで実装の必要あり)
 }
