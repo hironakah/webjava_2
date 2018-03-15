@@ -2,7 +2,7 @@
 class Staff extends EmployeeBase{
   
   Staff(){
-    super("一般職");   //  職業名
+    super("一般職");   //  職種名
   }
   
   public int getEmpSalary() {
@@ -18,6 +18,6 @@ class Staff extends EmployeeBase{
   }
   
   void setEmpCost() {
-    empCost = 0.8;    //  仕事量(人月)
+    empCost = 1;    //  仕事量(人月)
   }
 }

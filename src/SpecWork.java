@@ -1,7 +1,9 @@
 
 class SpecWork extends WorkBase{
 
-  void work() {
-    
+  int getWorkDay(){
+    return day;
   }
+  
+  
 }

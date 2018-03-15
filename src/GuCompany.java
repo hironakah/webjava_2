@@ -1,19 +1,19 @@
-class RoyalCustomer extends ClientBase{
+class GuCompany extends ClientBase{
   
-  RoyalCustomer(){
+  GuCompany(){
     super("グーカンパニー");
   }
   
   void setWorkCost() {
-    workCost = 50;
+    workCost = 50;  //  仕事量
   }
   
-  public int getWorkCost() {
+  public double getWorkCost() {
     return workCost;
   }
   
   void setWorkPeriod() {
-    workPeriod = 9;
+    workPeriod = 60;    //  仕事期間
   }
 
   double getWorkPeriod() {
@@ -21,11 +21,11 @@ class RoyalCustomer extends ClientBase{
   }
 
   void setWorkType() {
-    workType = "仕様";
+    workType = "評価";    //  仕事内容
   }
 
   String getWorkType() {
-    return null;
+    return workType;
   }
   
 }

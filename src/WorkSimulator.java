@@ -1,41 +1,49 @@
-import java.util.Scanner;
-
 public class WorkSimulator {
 
   public static void main(String[] args) {
     
-    System.out.println("従業員を選択");
+    EmployeeBase emp = null;
+    ClientBase cli = null;
+    WorkBase workType = null;
     
-    Scanner empSelect = new Scanner(System.in);
-    int empName = empSelect.nextInt();
-    
-    //  選択された従業員の給与をセット
-    NewStaff newStaff = new NewStaff();
-    newStaff.setEmpCost();
-    
-    //  Staff staff = new Staff();
-    //  staff.setEmpCost();
-    
-    System.out.println("顧客を選択");
-    
-    Scanner clientSelect = new Scanner(System.in);
-    int clientName = clientSelect.nextInt();
-    
-    //  選択された顧客の契約金をセット
-    RoyalCustomer client = new RoyalCustomer();
-    client.setWorkCost();
+    Select sel = new Select();
+    //  従業員選択
+    emp = sel.employeeSelect(emp);
+    //  顧客選択
+    cli = sel.clientSelect(cli);
     
     //  ドキュメント作成
     Document doc = new Document(1);
-    doc.docName = "契約書";
-    doc.docEmpName = newStaff.Position;
-    doc.docWorkCost = client.getWorkCost();
-    doc.docClientName = client.clientName;
-    doc.docMake();
+    doc.docEmpName = emp.position;
+    doc.docWorkCost = cli.getWorkCost();
+    doc.docClientName = cli.clientName;
+    doc.docMake(1);
     
+    int con = sel.contractSlect();
     
-    
+    if(con < 1) {
+      //    仕事内容選択
+      String wt = cli.getWorkType();
+      workType = sel.workTypeSelect(workType, wt);
+      
+      double ec = emp.getEmpCost();
+      double wc = cli.getWorkCost();
+      
+      workType.setWorkDay(ec, wc);
+      
+      if(workType.getWorkDay() > cli.getWorkPeriod()) {
+        System.out.println("期限超過により減給");
+        doc.docEmpSalary = (emp.getEmpSalary() * 0.8);
+        
+      }else {
+        doc.docEmpSalary = emp.getEmpSalary();
+      }
+      
+      doc.docMake(2);
+    }else {
+      
+    }
     
   }
-
+  
 }
