@@ -4,6 +4,7 @@ public class WorkSimulator {
     
     EmployeeBase emp = null;
     ClientBase cli = null;
+    DocumentBase doc = null;
     WorkBase workType = null;
     
     Select sel = new Select();
@@ -13,11 +14,11 @@ public class WorkSimulator {
     cli = sel.clientSelect(cli);
     
     //  ドキュメント作成
-    Document doc = new Document(1);
+    doc = new Contract(1);
     doc.docEmpName = emp.position;
     doc.docWorkCost = cli.getWorkCost();
     doc.docClientName = cli.clientName;
-    doc.docMake(1);
+    doc.make("契約書");
     
     int con = sel.contractSlect();
     
@@ -31,6 +32,9 @@ public class WorkSimulator {
       
       workType.setWorkDay(ec, wc);
       
+      doc = new PaySlip(1);
+      doc.docEmpName = emp.position;
+      
       if(workType.getWorkDay() > cli.getWorkPeriod()) {
         System.out.println("期限超過により減給");
         doc.docEmpSalary = (emp.getEmpSalary() * 0.8);
@@ -39,7 +43,7 @@ public class WorkSimulator {
         doc.docEmpSalary = emp.getEmpSalary();
       }
       
-      doc.docMake(2);
+      doc.make("給与明細");
     }else {
       
     }
